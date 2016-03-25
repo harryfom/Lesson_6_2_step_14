@@ -1,6 +1,7 @@
 package ru.fomenko_iv.lesson6_2.step14;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 /*
@@ -15,9 +16,31 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
         System.out.println("6.2 Коллекции – Шаг 14");
+        Set<Integer> s1 = new HashSet<>();
+        s1.add(1);
+        s1.add(2);
+        s1.add(3);
+        Set<Integer> s2 = new HashSet<>();
+        s2.add(0);
+        s2.add(1);
+        s2.add(2);
+        Set<Integer> s3 = symmetricDifference(s1, s2);
+        s3.forEach(System.out::println);
+
     }
 
     public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
-        return null;
+        Set<T> setOut = new HashSet<>();
+        for (T t:set1){
+            if(!set2.contains(t)){
+                setOut.add(t);
+            }
+        }
+        for (T t:set2){
+            if(!set1.contains(t)){
+                setOut.add(t);
+            }
+        }
+        return setOut;
     }
 }
